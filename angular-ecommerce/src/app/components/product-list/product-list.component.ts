@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
   currentCategoryId: number = 1;
+  searchMode: boolean = false;
   
   constructor(private productService: ProductService,
               private route :ActivatedRoute) { }
@@ -23,6 +24,9 @@ export class ProductListComponent implements OnInit {
   }
 
   listProducts() {
+    this.handelSearchProducts();
+  }
+  handelSearchProducts() {
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
     if(hasCategoryId) {
@@ -38,5 +42,4 @@ export class ProductListComponent implements OnInit {
       }
     )
   }
-
 }
