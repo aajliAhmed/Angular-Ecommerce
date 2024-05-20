@@ -9,6 +9,8 @@ import { ProductCategory } from '../common/product-category';
   providedIn: 'root'
 })
 export class ProductService {
+
+  
   
   private baseUrl = 'http://localhost:8080/api/products';
 
@@ -17,6 +19,15 @@ export class ProductService {
   getProductList(theCategoryId : number): Observable<Product[]> {
 
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
+
+
+    return this.httpClient.get<GetResponseProduct>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
+
+  searchProducts(theKeyword: string) :Observable<Product[]> {
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`;
 
 
     return this.httpClient.get<GetResponseProduct>(searchUrl).pipe(
