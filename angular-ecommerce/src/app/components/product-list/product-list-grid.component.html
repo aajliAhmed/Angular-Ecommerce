@@ -12,8 +12,11 @@
                         <div class="price">{{ tempProduct.unitPrice | currency:'USD' }}</div>
                         <a href="#" class="primary-btn">Add to Panier</a>
                     </div>
+                        <!-- if products empty-->
 
-                </div>
+                         <div *ngIf="products?.length === 0" class="alert alert-warning" role="alert">
+                            No products found.           
+                             </div>
             </div>
         </div>
     </div>
